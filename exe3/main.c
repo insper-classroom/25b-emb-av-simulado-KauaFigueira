@@ -67,7 +67,7 @@ void led_1_task(void* p){
 
     while (1){
         if (!recebeu && xQueueReceive(xQueueLed1, &data, pdMS_TO_TICKS(500))) {
-            printf("rodou\n");
+            printf("rodou1\n");
             recebeu = 1;
         }
         
@@ -82,6 +82,7 @@ void led_1_task(void* p){
             cont = 0;
             recebeu = 0;
             xSemaphoreGive(xSemaphoreLed2);
+            vTaskDelay(pdMS_TO_TICKS(200));
         }
         
     }
@@ -97,8 +98,8 @@ void led_2_task(void* p){
 	gpio_set_dir(LED_PIN_Y, GPIO_OUT);
 
     while (1){
-        if (xSemaphoreTake(xSemaphoreLed2, pdMS_TO_TICKS(500)) == pdTRUE && !recebeu && xQueueReceive(xQueueLed2, &data, pdMS_TO_TICKS(500))) {
-            printf("rodou\n");
+        if (!recebeu && xSemaphoreTake(xSemaphoreLed2, pdMS_TO_TICKS(100)) == pdTRUE && xQueueReceive(xQueueLed2, &data, pdMS_TO_TICKS(500))) {
+            printf("rodou2\n");
             recebeu = 1;
         }
         
