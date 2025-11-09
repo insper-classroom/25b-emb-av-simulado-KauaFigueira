@@ -87,6 +87,7 @@ void led_1_task(void* p){
     }
 }
 
+
 void led_2_task(void* p){
     int data;
     int recebeu = 0;
