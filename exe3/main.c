@@ -82,7 +82,7 @@ void led_1_task(void* p){
             cont = 0;
             recebeu = 0;
             xSemaphoreGive(xSemaphoreLed2);
-            vTaskDelay(pdMS_TO_TICKS(200));
+        
         }
         
     }
